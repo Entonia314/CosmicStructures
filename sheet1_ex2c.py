@@ -39,7 +39,7 @@ def t_flat(eta, Omega_m):
 
 
 # Generate values of conformal time eta
-eta_values = np.linspace(0, 10, 100)
+eta_values = np.linspace(0, 10, 1000)
 
 # Define values of Omega_m to plot
 Omega_m_values = [0.3, 1.00001, 1.3]
@@ -52,13 +52,29 @@ plt.figure(figsize=(10, 6))
     print(np.sqrt(1-Omega_m))
     a_values = a_open(eta_values, Omega_m)
     plt.plot(eta_values, a_values, label=f'$\\Omega_m = {Omega_m}$')"""
-plt.plot(eta_values, a_open(eta_values, 0.3), label=f'$\\Omega_m = {0.3}$')
-plt.plot(eta_values, a_flat(eta_values, 1), label=f'$\\Omega_m = {1}$')
-plt.plot(eta_values, a_closed(eta_values, 1.3), label=f'$\\Omega_m = {1.3}$')
-
-plt.title('Scale Factor $a(\\eta)$ vs. Conformal Time $\\eta$')
-plt.xlabel('Conformal Time $\\eta$')
+plt.plot(t_open(eta_values, 0.3), a_open(eta_values, 0.3), label=f'$\\Omega_m = {0.3}$')
+plt.title('Scale Factor $a(\\eta)$ vs. Time $t(\\eta)$ - Open universe, $\\Omega_{m}=0.3$')
+plt.xlabel('Time $t(\\eta)$')
 plt.ylabel('Scale Factor $a(\\eta)$')
-plt.legend()
+#plt.legend()
 plt.grid(True)
-plt.show()
+plt.savefig("CosmicStructures_Sheet1_Ex2c_open.png")
+
+plt.figure(figsize=(10, 6))
+plt.plot(t_flat(eta_values, 1), a_flat(eta_values, 1), label=f'$\\Omega_m = {1}$')
+plt.title('Scale Factor $a(\\eta)$ vs. Time $t(\\eta)$ - Flat universe, $\\Omega_{m}=1$')
+plt.xlabel('Time $t(\\eta)$')
+plt.ylabel('Scale Factor $a(\\eta)$')
+#plt.legend()
+plt.grid(True)
+plt.savefig("CosmicStructures_Sheet1_Ex2c_flat.png")
+
+plt.figure(figsize=(10, 6))
+plt.plot(eta_values, a_closed(eta_values, 1.3), label=f'$\\Omega_m = {1.3}$')
+plt.title('Scale Factor $a(\\eta)$ vs. Time $t(\\eta)$ - Closed universe, $\\Omega_{m}=1.3$')
+plt.xlabel('Time $t(\\eta)$')
+plt.ylabel('Scale Factor $a(\\eta)$')
+plt.vlines([np.pi, 2*np.pi], 0, 5, color=["pink", "purple"])
+#plt.legend()
+plt.grid(True)
+plt.savefig("CosmicStructures_Sheet1_Ex2c_closed.png")
